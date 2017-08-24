@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function(){
+//				抓取元素
+				var btn = document.getElementById("btn");
+				var box1 = document.getElementById("box1");
+				var box2 = document.getElementById("box2");
+//				给按钮绑定点击事件
+				var num = 0;
+				var a = 1;
+				var timer;
+				btn.onclick = function(){
+					clearInterval(timer);
+				if (num==0) {
+						var con = box1.innerHTML;
+						var con1 = box2.innerHTML;
+//						将box1内容赋给box2
+						box2.innerHTML = con;
+//						将box2内容赋给box1
+						box1.innerHTML = con1;
+						num=1
+					}else{
+						var con = box2.innerHTML;
+						var con1 = box1.innerHTML;
+//						将box1内容赋给box2
+						box1.innerHTML = con;
+						box2.innerHTML= con1;
+						num=0
+					}
+					timer = setInterval(function(){
+//						获取当前左
+						var oldL1 = parseInt(box1.style.left);
+						var oldL2 = parseInt(box2.style.left);
+						var newL1 = oldL1+a;
+						var newL2 = oldL2+a;
+						box1.style.left = newL1+'px';
+						box2.style.left = newL2+'px';
+						if (newL1>=900) {
+							a = -1;
+						}
+						if (newL1<=20) {
+							a = 1;
+						}
+					},10)
+				}
+			}
+		</script>
+		<style type="text/css">
+			div{
+				width: 365px;
+				height: 300px;
+				border: 1px solid deepskyblue;
+			}
+			#btn{
+				width: 300px;
+				height: 80px;
+				display: block;
+				margin: 15px auto;
+				background: deepskyblue;
+				font-size: 20px;
+				color: white;
+				letter-spacing: 0.5em;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box1" style="position:relative;left: 20px;">
+			<img src="img/1.jpg"/>
+		</div>
+		<input type="button" id="btn" value="Come On  就是干" />
+		<div id="box2" style="position:relative;left: 20px;top: 0px;">
+			<img src="img/3.gif"/>
+		</div>
+	</body>
+</html>
